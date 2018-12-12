@@ -9,14 +9,9 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
-	<h1>Social Theory and Curatorial Practice Fall 2018</h1>
-	<h2>Tavius Koktavy</h2>
-	<br>
-	<p>Welcome.</p>
-	<p>If you haven't already, print out a copy of <a href="#">this</a> book.</p>
-	<p>With your copy, scan the QR codes with your phone to view the colorized photographs.</p>
-	<br>
-	<ul>
-		<li><a href="ar.html"></a>Direct link to AR on mobile.</li>
-	</ul>
+	<a-scene embedded arjs='sourceType: webcam;'>
+		<a-sphere position='0 0.5 0' material='opacity: 0.5;'></a-sphere>
+		<!--<a-marker-camera preset='hiro'></a-marker-camera>-->
+		<a-marker-camera type='pattern' url='hoover-marker.patt'></a-marker-camera>-->
+	</a-scene>
 </body>
