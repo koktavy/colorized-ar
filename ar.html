@@ -10,28 +10,43 @@
 
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+		<a-assets>
+			<img id="color1" src="colorized-photos/dust-bowl.jpg">
+			<img id="color2" src="colorized-photos/migrant-family.jpg">
+			<img id="color3" src="colorized-photos/irish-ellis-island.jpg">
+			<img id="color4" src="colorized-photos/hooverville-central-park.jpg">
+			<img id="color5" src="colorized-photos/distributing-surplus-commodities.jpg">
+			<img id="color6" src="colorized-photos/family-on-road.jpg">
+		</a-assets>
+
 		<a-marker type='pattern' url='marker1.patt'>
-			<a-plane position='0 0 0' rotation='90 0 0' material='opacity: 0.5; side:double; color:yellow'></a-plane>
+			<a-image src="#color1" width="900" height="716"></a-image>
+			<!-- <a-plane position='0 0 0' rotation='90 0 0' material='opacity: 0.5; side:double; color:yellow'></a-plane> -->
 		</a-marker>
 
 		<a-marker type='pattern' url='marker2.patt'>
-			<a-sphere position='0 0.5 0' material='opacity: 0.5; color:blue'></a-sphere>
+			<a-image src="#color2" width="1024" height="818"></a-image>
+			<!-- <a-sphere position='0 0.5 0' material='opacity: 0.5; color:blue'></a-sphere> -->
 		</a-marker>
 
 		<a-marker type='pattern' url='marker3.patt'>
-			<a-box position='0 0.5 0' material='opacity: 0.5; color:red'></a-box>
+			<a-image src="#color3" width="775" height="1114"></a-image>
+			<!-- <a-box position='0 0.5 0' material='opacity: 0.5; color:red'></a-box> -->
 		</a-marker>
 
 		<a-marker type='pattern' url='marker4.patt'>
-			<a-sphere position='0 0.5 0' material='opacity: 0.5; color:yellow'></a-sphere>
+			<a-image src="#color4" width="1200" height="937"></a-image>
+			<!-- <a-sphere position='0 0.5 0' material='opacity: 0.5; color:yellow'></a-sphere> -->
 		</a-marker>
 
 		<a-marker type='pattern' url='marker5.patt'>
-			<a-sphere position='0 0.5 0' material='opacity: 0.5; color:pink'></a-sphere>
+			<a-image src="#color5" width="974" height="666"></a-image>
+			<!-- <a-sphere position='0 0.5 0' material='opacity: 0.5; color:pink'></a-sphere> -->
 		</a-marker>
 
 		<a-marker type='pattern' url='marker6.patt'>
-			<a-sphere position='0 0.5 0' material='opacity: 0.5; color:green'></a-sphere>
+			<a-image src="#color6" width="800" height="662"></a-image>
+			<!-- <a-sphere position='0 0.5 0' material='opacity: 0.5; color:green'></a-sphere> -->
 		</a-marker>
 		<a-entity camera></a-entity>
 	</a-scene>
