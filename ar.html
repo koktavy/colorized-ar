@@ -16,7 +16,6 @@
 				marker.addEventListener('markerFound', function() {
 					if (plane.parentElement.id == marker.id) { // Add only to the correct parent/child
 						console.log("Adding click listener.");
-						addClickListener(marker, plane);
 						plane.addEventListener('click', function(evt) {
 							clickResults(marker, plane);
 						});
