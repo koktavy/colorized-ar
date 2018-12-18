@@ -11,13 +11,13 @@
 			init: function() {
 				var el = this.el;
 				console.log(el);
+				console / log(el.material);
+				el.addEventListener('click', function() {
+					var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
+					alert("Clicked");
+					//window.location = link + el.material. + '.jpg';
+				})
 			}
-			el.addEventListener('click', function() {
-				var url = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
-				console.log(el.material);
-				//window.location = link + el.material. + '.jpg';
-			})
-			//
 		});
 	</script>
 </head>
