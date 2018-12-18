@@ -16,20 +16,23 @@
 				marker.addEventListener('markerFound', function() {
 					if (plane.parentElement.id == marker.id) { // Add only to the correct parent/child
 						console.log("Adding click listener.");
-						plane.addEventListener('click', clickListen(marker, plane));
+						addClickListener(marker, plane);
+						plane.addEventListener('click', function(evt) {
+							clickResults(marker, plane);
+						});
 					}
 				});
 				marker.addEventListener('markerLost', function() {
 					console.log('markerLost');
 					if (plane.parentElement.id == marker.id) {
-						plane.removeEventListener('click', clickListen);
+						plane.removeEventListener('click', clickResults);
 						console.log("Click listener removed");
 					}
 				});
 			}
 		});
 
-		function clickListen(marker, plane) {
+		function clickResults(marker, plane) {
 			let imgSrc = plane.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
 			imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
 			console.log(imgSrc);
