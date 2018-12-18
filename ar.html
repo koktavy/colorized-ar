@@ -15,29 +15,26 @@
 				var plane = marker.firstElementChild;
 				marker.addEventListener('markerFound', function() {
 					if (plane.parentElement.id == marker.id) { // Add only to the correct parent/child
-						plane.addEventListener('click', function() {
-							console.log("Adding click listener.");
-							clickResults(marker, plane);
-						});
+						plane.addEventListener('click', clickHandler);
+						console.log("Adding click listener.");
 					}
 				});
 				marker.addEventListener('markerLost', function() {
 					console.log('markerLost');
 					if (plane.parentElement.id == marker.id) {
-						plane.removeEventListener('click', clickResults);
-						console.log("Click listener removed");
+						plane.removeEventListener('click', clickHandler);
+						console.log("Removing click listener");
 					}
 				});
 			}
 		});
 
-		function clickResults(marker, plane) {
-			if (plane.parentElement.id == marker.id) { // Should be redundant, but getting multiple logs from here...
-				let imgSrc = plane.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
-				imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-				console.log(imgSrc);
-				//window.location = urlFront + imgSrc;
-			}
+		function clickHandler(evt) { // Event handlers are called with the event object as the first argument(!)
+			var plane = evt.target;
+			let imgSrc = plane.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
+			imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
+			console.log(imgSrc);
+			//window.location = urlFront + imgSrc;
 		}
 
 		// AFRAME.registerComponent('link-to-img', {
