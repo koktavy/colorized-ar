@@ -11,7 +11,7 @@
 			init: function() {
 				var el = this.el;
 				el.addEventListener('click', function(evt) {
-					if (el.object3D.visible == true && el.getAttribute('id') == vt.detail.cursorEl.getAttribute('id')) {
+					if (el.object3D.visible == true && el.getAttribute('id') == evt.detail.cursorEl.getAttribute('id')) {
 						console.log(evt.detail);
 						alert("Clicked"); // Debugging
 						var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
