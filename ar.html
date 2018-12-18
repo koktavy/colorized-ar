@@ -9,13 +9,14 @@
 	<script>
 		var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
 
+		var listening = false;
+
 		AFRAME.registerComponent('link-to-img', {
 			init: function() {
 				let el = this.el; // NOTE, this code is buggy! It fires for every element with this component.
 				// Not sure how to resolve it generically, but there needs to be some check between the evt and this.el
 			},
 			tick: function() {
-				var listening = false;
 				let el = this.el;
 				if (el.object3D.visible && !listening) {
 					console.log("Seen");
@@ -101,7 +102,7 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
-	<a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+	<a-scene arjs='debugUIEnabled: false;'>
 		<a-assets>
 			<img id="color1" src="colorized-photos/dust-bowl.jpg">
 			<img id="color2" src="colorized-photos/migrant-family.jpg">
