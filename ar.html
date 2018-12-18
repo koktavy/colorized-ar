@@ -25,7 +25,7 @@
 					}
 				});
 				marker.addEventListener('markerLost', function() {
-					console.log('markerLost: ', markerId);
+					console.log('markerLost');
 					if (plane.parentElement.id == marker.id) {
 						plane.removeEventListener('click');
 						console.log("Click listener removed");
@@ -34,56 +34,56 @@
 			}
 		});
 
-		AFRAME.registerComponent('link-to-img', {
-			init: function() {
-				let el = this.el;
-				console.log(el.parentElement);
-				console.log(el.parentElement.getAttribute('registerevents'));
-				console.log(el.parentElement.getAttribute('registerevents').listening);
+		// AFRAME.registerComponent('link-to-img', {
+		// 	init: function() {
+		// 		let el = this.el;
+		// 		console.log(el.parentElement);
+		// 		console.log(el.parentElement.getAttribute('registerevents'));
+		// 		console.log(el.parentElement.getAttribute('registerevents').listening);
+		//
+		// 		el.addEventListener('click', function(evt) {
+		// 			if (el.object3D.visible == true && evt.detail.cursorEl) {
+		// 				let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
+		// 				imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
+		// 				console.log(imgSrc);
+		// 				//window.location = urlFront + imgSrc;
+		// 			}
+		// 		})
+		// 	}
+		// });
 
-				el.addEventListener('click', function(evt) {
-					if (el.object3D.visible == true && evt.detail.cursorEl) {
-						let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
-						imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-						console.log(imgSrc);
-						//window.location = urlFront + imgSrc;
-					}
-				})
-			}
-		});
-
-		AFRAME.registerComponent('link-to-img2', {
-			init: function() {
-				let el = this.el; // NOTE, this code is buggy! It fires for every element with this component.
-				// Not sure how to resolve it generically, but there needs to be some check between the evt and this.el
-			},
-			tock: function() {
-				var listening = false;
-				let el = this.el;
-				if (el.object3D.visible && !listening) {
-					console.log("Seen");
-					listening = true;
-					el.addEventListener('click', function(evt) {
-						if (el.object3D.visible == true && evt.detail.cursorEl) {
-							//console.log(evt.detail);
-							//alert("Clicked"); // Debugging
-							let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
-							imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-							console.log(imgSrc);
-							window.location = urlFront + imgSrc;
-						}
-						if (el.object3D.visible == false) {
-
-						}
-					});
-				}
-				if (!el.object3D.visible) {
-					console.log("gone");
-					listening = false;
-					el.removeEventListener('click');
-				}
-			}
-		});
+		// AFRAME.registerComponent('link-to-img2', {
+		// 	init: function() {
+		// 		let el = this.el; // NOTE, this code is buggy! It fires for every element with this component.
+		// 		// Not sure how to resolve it generically, but there needs to be some check between the evt and this.el
+		// 	},
+		// 	tock: function() {
+		// 		var listening = false;
+		// 		let el = this.el;
+		// 		if (el.object3D.visible && !listening) {
+		// 			console.log("Seen");
+		// 			listening = true;
+		// 			el.addEventListener('click', function(evt) {
+		// 				if (el.object3D.visible == true && evt.detail.cursorEl) {
+		// 					//console.log(evt.detail);
+		// 					//alert("Clicked"); // Debugging
+		// 					let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
+		// 					imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
+		// 					console.log(imgSrc);
+		// 					window.location = urlFront + imgSrc;
+		// 				}
+		// 				if (el.object3D.visible == false) {
+		//
+		// 				}
+		// 			});
+		// 		}
+		// 		if (!el.object3D.visible) {
+		// 			console.log("gone");
+		// 			listening = false;
+		// 			el.removeEventListener('click');
+		// 		}
+		// 	}
+		// });
 	</script>
 </head>
 
