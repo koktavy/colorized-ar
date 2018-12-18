@@ -10,17 +10,18 @@
 		AFRAME.registerComponent('link-to-img', {
 			init: function() {
 				var el = this.el;
-				console.log(el.getAttribute('material').src);
 				el.addEventListener('click', function(evt) {
-					var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
-					alert("Clicked");
-					var imgId = el.getAttribute('material').src; // Get the ID of the JPG image asset.
-					console.log(imgId);
-					var targetImg = imgId.substring(imgId.indexOf('#') + 1); // Clip off the "#".
-					var imgSrc = document.querySelector(targetImg).getAttribute('src'); // Get the src string from the image.
-					imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-					console.log(imgSrc);
-					window.location = link + imgSrc;
+					if (el.object3D.visible == true && evt.detail.cursorEl) {
+						alert("Clicked"); // Debugging
+						var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
+						var imgId = el.getAttribute('material').src; // Get the ID of the JPG image asset.
+						console.log(imgId);
+						var targetImg = imgId.substring(imgId.indexOf('#') + 1); // Clip off the "#".
+						var imgSrc = document.querySelector(targetImg).getAttribute('src'); // Get the src string from the image.
+						imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
+						console.log(imgSrc);
+						window.location = link + imgSrc;
+					}
 				})
 			}
 		});
