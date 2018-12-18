@@ -6,6 +6,20 @@
 <head>
 	<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
 	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.2/aframe/build/aframe-ar.js"></script>
+	<script>
+		AFRAME.registerComponent('link-to-img', {
+			const link = "https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/";
+
+			init: function() {
+				var el = this.el;
+			}
+			el.addEventListener('click', function() {
+				console.log(el.material);
+				//window.location = link + el.material. + '.jpg';
+			})
+			//
+		});
+	</script>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
