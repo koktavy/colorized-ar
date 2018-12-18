@@ -11,9 +11,9 @@
 			init: function() {
 				var el = this.el;
 				el.addEventListener('click', function(evt) {
-					const intersectedElement = evt.detail.intersectedEl;
+					const intersectedElement = evt && evt.detail && evt.detail.intersectedEl;
+					console.log(intersectedElement);
 					if (intersectedElement === el) {
-						console.log(intersectedElement);
 						alert("Clicked"); // Debugging
 						var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
 						var imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
