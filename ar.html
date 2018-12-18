@@ -14,7 +14,7 @@
 				el.addEventListener('click', function(evt) {
 					if (el.object3D.visible == true && evt.detail.cursorEl) {
 						//console.log(evt.detail);
-						alert("Clicked"); // Debugging
+						//alert("Clicked"); // Debugging
 						var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
 						var imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
 						imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
