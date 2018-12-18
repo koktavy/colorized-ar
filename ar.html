@@ -10,12 +10,14 @@
 		AFRAME.registerComponent('link-to-img', {
 			init: function() {
 				var el = this.el;
-				console.log(el);
-				console / log(el.material);
+				console.log(el.material);
 				el.addEventListener('click', function() {
 					var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
 					alert("Clicked");
-					//window.location = link + el.material. + '.jpg';
+					// Get the material src ID,
+					// find that ID and get the ACTUAL source,
+					// imgSrc = split and store all text after '/'
+					//window.location = link + imgSrc;
 				})
 			}
 		});
