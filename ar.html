@@ -34,7 +34,7 @@
 			let imgSrc = plane.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
 			imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
 			console.log(imgSrc);
-			//window.location = urlFront + imgSrc;
+			window.location = urlFront + imgSrc;
 		}
 
 		// AFRAME.registerComponent('link-to-img', {
