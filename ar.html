@@ -9,14 +9,30 @@
 	<script>
 		var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
 
-		var listening = false;
+		AFRAME.registerComponent('registerevents', {
+			init: function() {
+				var marker = this.el;
+				var listening = false;
+				marker.addEventListener('markerFound', function() {
+					var markerId = marker.id;
+					console.log('markerFound: ', markerId);
+					listening = true;
+				});
+				marker.addEventListener('markerLost', function() {
+					var markerId = marker.id;
+					console.log('markerLost: ', markerId);
+					listening = false;
+				});
+			}
+		});
 
-		AFRAME.registerComponent('link-to-img', {
+		AFRAME.registerComponent('link-to-img2', {
 			init: function() {
 				let el = this.el; // NOTE, this code is buggy! It fires for every element with this component.
 				// Not sure how to resolve it generically, but there needs to be some check between the evt and this.el
 			},
-			tick: function() {
+			tock: function() {
+				var listening = false;
 				let el = this.el;
 				if (el.object3D.visible && !listening) {
 					console.log("Seen");
@@ -43,51 +59,13 @@
 			}
 		});
 
-		AFRAME.registerComponent('link-to-img2', {
+		AFRAME.registerComponent('link-to-img', {
 			init: function() {
 				let el = this.el;
-				el.addEventListener('click', function(evt) {
-					if (el.object3D.visible == true && evt.detail.cursorEl) {
-						let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
-						imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-						console.log(imgSrc);
-						window.location = urlFront + imgSrc;
-					}
-				})
-			}
-		});
+				console.log(el.parentElement);
+				console.log(el.parentElement.getAttribute('registerevents'));
+				console.log(el.parentElement.getAttribute('registerevents').listening);
 
-		AFRAME.registerComponent('link-to-img3', {
-			init: function() {
-				let el = this.el;
-				el.addEventListener('click', function(evt) {
-					if (el.object3D.visible == true && evt.detail.cursorEl) {
-						let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
-						imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-						console.log(imgSrc);
-						window.location = urlFront + imgSrc;
-					}
-				})
-			}
-		});
-
-		AFRAME.registerComponent('link-to-img4', {
-			init: function() {
-				let el = this.el;
-				el.addEventListener('click', function(evt) {
-					if (el.object3D.visible == true && evt.detail.cursorEl) {
-						let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
-						imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-						console.log(imgSrc);
-						window.location = urlFront + imgSrc;
-					}
-				})
-			}
-		});
-
-		AFRAME.registerComponent('link-to-img5', {
-			init: function() {
-				let el = this.el;
 				el.addEventListener('click', function(evt) {
 					if (el.object3D.visible == true && evt.detail.cursorEl) {
 						let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
@@ -102,7 +80,7 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
-	<a-scene arjs='debugUIEnabled: false;'>
+	<a-scene arjs='debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 		<a-assets>
 			<img id="color1" src="colorized-photos/dust-bowl.jpg">
 			<img id="color2" src="colorized-photos/migrant-family.jpg">
@@ -111,27 +89,27 @@
 			<img id="color5" src="colorized-photos/family-on-road.jpg">
 		</a-assets>
 
-		<a-marker type='pattern' url='marker1.patt'>
+		<a-marker registerevents type='pattern' url='marker1.patt'>
 			<!-- position="left<->right, far<->near, up<->down" -->
 			<a-plane id='i' link-to-img emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.332' height='4' material='side:double; src: #color1'>
 			</a-plane>
 		</a-marker>
 
-		<a-marker type='pattern' url='marker2.patt'>
+		<a-marker registerevents type='pattern' url='marker2.patt'>
 			<a-plane id='ii' link-to-img emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.032' height='4' material='side:double; src: #color2'>
 			</a-plane>
 		</a-marker>
 
-		<a-marker type='pattern' url='marker3.patt'>
+		<a-marker registerevents type='pattern' url='marker3.patt'>
 			<a-plane id='iii' link-to-img emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.124' height='4' material='side:double; src: #color3'>
 		</a-marker>
 
-		<a-marker type='pattern' url='marker4.patt'>
+		<a-marker registerevents type='pattern' url='marker4.patt'>
 			<a-plane id='iv' link-to-img emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.124' height='4' material='side:double; src: #color4'>
 			</a-plane>
 		</a-marker>
 
-		<a-marker type='pattern' url='marker5.patt'>
+		<a-marker registerevents type='pattern' url='marker5.patt'>
 			<a-plane id='v' link-to-img emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.08' height='4' material='side:double; src: #color5' </a-plane>
 		</a-marker>
 
