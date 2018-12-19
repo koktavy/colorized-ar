@@ -6,6 +6,7 @@
 <head>
 	<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
 	<script src="aframe-ar.js"></script>
+	<!-- Incorporating these modifications to reduce jitter: https://github.com/jeromeetienne/AR.js/pull/422/commits/7e247677f563e7858388b00eb46c226c92874bb5 -->
 	<script>
 		var urlFront = 'https://raw.githubusercontent.com/kotavy/colorized-ar/master/colorized-photos/';
 
@@ -13,12 +14,14 @@
 			init: function() {
 				var marker = this.el;
 				var plane = marker.firstElementChild;
+
 				marker.addEventListener('markerFound', function() {
 					if (plane.parentElement.id == marker.id) { // Add only to the correct parent/child
 						plane.addEventListener('click', clickHandler);
 						console.log("Adding click listener.");
 					}
 				});
+
 				marker.addEventListener('markerLost', function() {
 					console.log('markerLost');
 					if (plane.parentElement.id == marker.id) {
@@ -36,57 +39,6 @@
 			console.log(imgSrc);
 			window.location = urlFront + imgSrc;
 		}
-
-		// AFRAME.registerComponent('link-to-img', {
-		// 	init: function() {
-		// 		let el = this.el;
-		// 		console.log(el.parentElement);
-		// 		console.log(el.parentElement.getAttribute('registerevents'));
-		// 		console.log(el.parentElement.getAttribute('registerevents').listening);
-		//
-		// 		el.addEventListener('click', function(evt) {
-		// 			if (el.object3D.visible == true && evt.detail.cursorEl) {
-		// 				let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
-		// 				imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-		// 				console.log(imgSrc);
-		// 				//window.location = urlFront + imgSrc;
-		// 			}
-		// 		})
-		// 	}
-		// });
-
-		// AFRAME.registerComponent('link-to-img2', {
-		// 	init: function() {
-		// 		let el = this.el; // NOTE, this code is buggy! It fires for every element with this component.
-		// 		// Not sure how to resolve it generically, but there needs to be some check between the evt and this.el
-		// 	},
-		// 	tock: function() {
-		// 		var listening = false;
-		// 		let el = this.el;
-		// 		if (el.object3D.visible && !listening) {
-		// 			console.log("Seen");
-		// 			listening = true;
-		// 			el.addEventListener('click', function(evt) {
-		// 				if (el.object3D.visible == true && evt.detail.cursorEl) {
-		// 					//console.log(evt.detail);
-		// 					//alert("Clicked"); // Debugging
-		// 					let imgSrc = el.getAttribute('material').src.getAttribute('src'); // .src returns the object of the src ID. Get the src string of that img object.
-		// 					imgSrc = imgSrc.substring(imgSrc.indexOf('/') + 1);
-		// 					console.log(imgSrc);
-		// 					window.location = urlFront + imgSrc;
-		// 				}
-		// 				if (el.object3D.visible == false) {
-		//
-		// 				}
-		// 			});
-		// 		}
-		// 		if (!el.object3D.visible) {
-		// 			console.log("gone");
-		// 			listening = false;
-		// 			el.removeEventListener('click');
-		// 		}
-		// 	}
-		// });
 	</script>
 </head>
 
@@ -103,6 +55,7 @@
 		<a-marker id='i' registerevents type='pattern' url='marker1.patt'>
 			<!-- position="left<->right, far<->near, up<->down" -->
 			<a-plane emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.332' height='4' material='side:double; src: #color1'>
+				<!-- Attributes for full page, marker top-left: position='2 0 2.8' rotation='-90 0 0' width='5.332' height='4' -->
 			</a-plane>
 		</a-marker>
 
@@ -112,7 +65,8 @@
 		</a-marker>
 
 		<a-marker id='iii' registerevents type='pattern' url='marker3.patt'>
-			<a-plane emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.124' height='4' material='side:double; src: #color3'>
+			<a-plane emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='0 0 0' rotation='-90 0 0' width='5.124' height='4' material='side:double; src: #color3'>
+			</a-plane>
 		</a-marker>
 
 		<a-marker id='iv' registerevents type='pattern' url='marker4.patt'>
@@ -121,7 +75,8 @@
 		</a-marker>
 
 		<a-marker id='v' registerevents type='pattern' url='marker5.patt'>
-			<a-plane emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.08' height='4' material='side:double; src: #color5' </a-plane>
+			<a-plane emitevents='true' cursor='rayOrigin: mouse; fuse: false' position='2 0 2.8' rotation='-90 0 0' width='5.08' height='4' material='side:double; src: #color5'>
+			</a-plane>
 		</a-marker>
 
 		<a-entity camera></a-entity>
